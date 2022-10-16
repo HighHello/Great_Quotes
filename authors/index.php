@@ -16,16 +16,16 @@ $arrayQuote = csvToArray('..\quotes.csv');
 <body>
     <h1>List of authors</h1>
     <?php
-        if (isset($arrayQuote[0][0])) {
-            foreach ($arrayQuote as $line) {
-                if (isset($line)) {
-                    $string =$arrayAuthor[$line[0]][0] . " " . $arrayAuthor[$line[0]][1];
-                    echo ('<a href ="./detail.php?index=' . $line[0] . '">' . $string . '</a></br></br>');
-                }
+        if (isset($arrayAuthor[0][0])) {
+            for($i = 0;$i<count($arrayAuthor);$i++) {
+               
+                    $string = $arrayAuthor[$i][0] . " " . $arrayAuthor[$i][1];
+                    echo ('<a href ="detail.php?index=' . $i . '">' . $string . '</a></br></br>');
+                
             }
         }
         else
-            echo "There are no quotes to show";
+            echo "There are no authors to show";
 
 
     ?>

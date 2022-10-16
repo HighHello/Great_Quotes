@@ -10,11 +10,16 @@ $arrayQuote = csvToArray('..\quotes.csv');
     <body>
         <h1>Quotes by author <?= $arrayAuthor[0].' '.$arrayAuthor[1]?></h1>
         <?php
-            foreach ($arrayQuote as $line) {
-                if($line[0]==$param){
-                    echo '<h2>'.$line[1].'</h2><br>';
+            if(isset($arrayQuote[0][0])){
+            for($i = 0;$i<count($arrayQuote);$i++) {
+                $line = $arrayQuote[$i];
+                if ($line[0]==$param) {
+                    echo $line[1];
+                    
                 }
             }
+        }else echo "No quotes";
+ 
         ?>
     <a href="delete.php?index=<?=$param?>"> Delete author</a>
     </body>

@@ -84,7 +84,7 @@ function deleteRecord($csvFile,$index){
     //print_r($array);
     arrayToCsv($csvFile,$array);
 }
-
+//print_r(csvToArray('authors.csv'));
 //deleteRecord('quotes.csv',0);
 
 
