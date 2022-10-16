@@ -1,20 +1,28 @@
 <?php
 include 'csvutil.php';
 $param = $_GET['index'];
-if (isset($_GET['option'])) {
-    if ($_GET['option'] == "yes") {
-        echo '<script>confirm("Quote has been deleted");window.location.href = "index.php";</script>';
-    }
-    deleteRecord('authors.csv', [$param]);
-    deleteRecord('quotes.csv', [$param]);
-    if ($_GET['option'] == "no") {
-        echo '<script>confirm("Quote will not be deleted"); window.location.href = "index.php";</script>';
-    }
-}
+
+
+
+
+
+
+
+
 $arrayAuthor = csvToArray('authors.csv');
 $arrayQuote = csvToArray('quotes.csv');
 $author = csvToArray('authors.csv')[$param];
 $quote = csvToArray('quotes.csv')[$param];
+
+if (!empty($_POST)){
+    $quote = $_POST["quote"];
+    $author = $_POST["author"];
+    modifyAtIndex('quotes.csv',array($author,$quote),$param);
+    echo '<script>confirm("Quote has been modified");window.location.href = "index.php";</script>';
+}
+
+
+
 
 ?>
 <!doctype html>
