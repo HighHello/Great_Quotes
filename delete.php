@@ -3,9 +3,10 @@ include 'csvutil.php';
 $param = $_GET['index'];
 if(isset($_GET['option'])){
     if($_GET['option']=="yes"){
-    echo '<script>confirm("Quote has been deleted");window.location.href = "index.php";</script>';}
-    deleteRecord('authors.csv',[$param]);
-    deleteRecord('quotes.csv',[$param]);
+    deleteRecord('quotes.csv',$param);
+     echo '<script>confirm("Quote has been deleted");window.location.href = "index.php";</script>';
+    
+    }
     if($_GET['option']=="no"){
     echo '<script>confirm("Quote will not be deleted");window.location.href = "index.php";</script>';
     }

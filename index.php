@@ -17,10 +17,11 @@ $arrayQuote = csvToArray('quotes.csv');
     <h1>List of quotes</h1>
     <?php
         if (isset($arrayQuote[0][0])) {
-            foreach ($arrayQuote as $line) {
+            for($i = 0;$i<count($arrayQuote);$i++) {
+                $line = $arrayQuote[$i];
                 if (isset($line)) {
                     $string = $line[1] . " - " . $arrayAuthor[$line[0]][0] . " " . $arrayAuthor[$line[0]][1];
-                    echo ('<a href ="detail.php?index=' . $line[0] . '">' . $string . '</a></br></br>');
+                    echo ('<a href ="detail.php?index=' . $i . '">' . $string . '</a></br></br>');
                 }
             }
         }
@@ -31,6 +32,7 @@ $arrayQuote = csvToArray('quotes.csv');
     ?>
     <br>
     <a href="create.php"> Create quote</a>
+    <a href="./authors/index.php"> Author list</a>
 </body>
 
 </html>

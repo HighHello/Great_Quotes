@@ -1,8 +1,9 @@
 <?php
 include 'csvutil.php';
 $param = $_GET['index'];
-$arrayAuthor = csvToArray('authors.csv')[$param];
 $arrayQuote = csvToArray('quotes.csv')[$param];
+$arrayAuthor = csvToArray('authors.csv')[$arrayQuote[0]];
+
 
 ?>
 <!doctype html>

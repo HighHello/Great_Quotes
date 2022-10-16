@@ -85,18 +85,8 @@ function deleteRecord($csvFile,$index){
     arrayToCsv($csvFile,$array);
 }
 
+//deleteRecord('quotes.csv',0);
 
-
-
-
-//newRecord('authors.csv', array('hello','hai2'));
-newRecord('quotes.csv', array('0','Teetasdfasd'));
-//print_r(csvToArray('quotes.csv'));
-deleteRecord('quotes.csv',0);
-
-//print_r(csvToArray('authors.csv'));
-//modifyAtIndex('authors.csv', array('hello','hai2'),0);
-//print_r(csvToArray('authors.csv'));
 
 
 ?>
