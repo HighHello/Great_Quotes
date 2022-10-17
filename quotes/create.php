@@ -1,7 +1,7 @@
 <?php
-include 'csvutil.php';
-$arrayAuthor = csvToArray('authors.csv');
-$arrayQuote = csvToArray('quotes.csv');
+include '..\csvutil.php';
+$arrayAuthor = csvToArray('..\authors.csv');
+$arrayQuote = csvToArray('..\quotes.csv');
 //print_r($arrayQuote);
 
 
@@ -9,7 +9,7 @@ $arrayQuote = csvToArray('quotes.csv');
 if (!empty($_POST)){
     $quote = $_POST["quote"];
     $author = $_POST["author"];
-    newRecord('quotes.csv',array($author,$quote));
+    newRecord('..\quotes.csv',array($author,$quote));
     echo '<script>confirm("Quote has been created");window.location.href = "index.php";</script>';
 }
 

@@ -1,18 +1,20 @@
 <?php
-include 'csvutil.php';
+include '..\csvutil.php';
 $param = $_GET['index'];
 if(isset($_GET['option'])){
+    if(is_logged()){
     if($_GET['option']=="yes"){
-    deleteRecord('quotes.csv',$param);
+    deleteRecord('..\quotes.csv',$param);
      echo '<script>confirm("Quote has been deleted");window.location.href = "index.php";</script>';
     
     }
     if($_GET['option']=="no"){
     echo '<script>confirm("Quote will not be deleted");window.location.href = "index.php";</script>';
     }
+    }else redirect("You are not logged in",'index.php');
 }
-$arrayAuthor = csvToArray('authors.csv')[$param];
-$arrayQuote = csvToArray('quotes.csv')[$param];
+$arrayAuthor = csvToArray('..\authors.csv')[$param];
+$arrayQuote = csvToArray('..\quotes.csv')[$param];
 
 ?>
 <!doctype html>

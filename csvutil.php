@@ -1,10 +1,11 @@
+
 <?php
- 
+session_start();
+include 'auth\auth.php';
  //we use PHP built in fgetcsv method.
  //We check a few conditions and turn blank lines into empty arrays to avoid NULLs when converting from array back to csv
 //csvToArray() takes url, reads file referenced by url and returns array
  function csvToArray($csvFile){
- 
     $file_to_read = fopen($csvFile, 'r');
  
     while (!feof($file_to_read) ) {
@@ -21,6 +22,7 @@
 //we use PHP build in method fputcsv, but it doesn't work well with empyty arrays so we use fwrite() and format our own csv instead
 //arrayToCsv() takes url, reads file referenced by url and returns array
 function arrayToCsv($csvFile, $array){  
+    if(!is_logged())redirect("You need to be logged in to do this",__DIR__.'index.php');
     // Open a file in write mode ('w')
     $fp = fopen($csvFile, 'w');
     // Loop through file pointer and a line
@@ -43,11 +45,13 @@ function arrayToCsv($csvFile, $array){
 
 //Takes url and index and returns the line of the file referenced by the index. File must be formated csv
 function csvAtIndex($csvFile,$index){
+
     $array = csvToArray($csvFile);
     return $array[$index];
 }
 //adds new record in the form of a new line in a csv file
 function newRecord($csvFile,$recordArray){
+    if(!is_logged())redirect("You need to be logged in to do this",__DIR__.'index.php');
     $array = csvToArray($csvFile);
     if($array[0]==0)$array = array($recordArray);
     else 
@@ -58,6 +62,7 @@ function newRecord($csvFile,$recordArray){
 
 //Modifies a line in a csv file
 function modifyAtIndex($csvFile,$recordArray,$index){
+    if(!is_logged())redirect("You need to be logged in to do this",__DIR__.'index.php');
     $array = csvToArray($csvFile);
     $array[$index] = $recordArray;
     //print_r($array);
@@ -67,6 +72,7 @@ function modifyAtIndex($csvFile,$recordArray,$index){
 //clears a line in a csv file, line is left blank
 
 function clearRecord($csvFile,$index){
+    if(!is_logged())redirect("You need to be logged in to do this",__DIR__.'index.php');
     $array = csvToArray($csvFile);
     $array[$index] = array("");
     //print_r($array);
@@ -77,6 +83,7 @@ function clearRecord($csvFile,$index){
 //This is problematic if we were to delete from author as author does not have seperate index that refers to their quotes as per specification.
 
 function deleteRecord($csvFile,$index){
+    if(!is_logged())redirect("You need to be logged in to do this",__DIR__.'index.php');
     
     $array = csvToArray($csvFile);
     unset($array[$index]);#this does not change the indexs of the array, as such, we reorder the indexes of the array as well
@@ -84,9 +91,8 @@ function deleteRecord($csvFile,$index){
     //print_r($array);
     arrayToCsv($csvFile,$array);
 }
-//print_r(csvToArray('authors.csv'));
+//print_r(csvToArray('./data/banned.csv'));
 //deleteRecord('quotes.csv',0);
-
 
 
 ?>

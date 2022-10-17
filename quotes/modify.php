@@ -1,27 +1,21 @@
 <?php
-include 'csvutil.php';
+require 'csvutil.php';
 $param = $_GET['index'];
-
-
-
-
-
-
-
-
-$arrayAuthor = csvToArray('authors.csv');
-$arrayQuote = csvToArray('quotes.csv');
-$author = csvToArray('authors.csv')[$param];
-$quote = csvToArray('quotes.csv')[$param];
+$arrayAuthor = csvToArray('..\authors.csv');
+$arrayQuote = csvToArray('..\quotes.csv');
+$author = csvToArray('..\authors.csv')[$param];
+$quote = csvToArray('..\quotes.csv')[$param];
 
 if (!empty($_POST)){
     $quote = $_POST["quote"];
     $author = $_POST["author"];
-    modifyAtIndex('quotes.csv',array($author,$quote),$param);
+    modifyAtIndex('..\quotes.csv',array($author,$quote),$param);
     echo '<script>confirm("Quote has been modified");window.location.href = "index.php";</script>';
 }
 
-
+if(!is_logged()){
+    redirect("You are not logged in",'index.php');
+}
 
 
 ?>
@@ -53,6 +47,7 @@ if (!empty($_POST)){
         </select>
         <input type="submit">
     </form>
+    
 
 
 </body>

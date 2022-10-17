@@ -21,8 +21,11 @@ $arrayQuote = csvToArray('..\quotes.csv');
         }else echo "No quotes";
  
         ?>
-    <a href="delete.php?index=<?=$param?>"> Delete author</a>
-    </body>
+    <br>
+    <a href="delete.php?index=<?=$param?>"> Delete author</a><br>
+    <a href="modify.php?index=<?=$param?>"> Modify author</a><br>
     <a href="./index.php"> Return</a>
+    </body>
+    
     
 </html>
